@@ -14,8 +14,8 @@
 ## 💼 Technologies used
 For the development of this website I used the following technologies:
 
-- HTML;
-- Sass;
-- JavaScript;
-- CSS;
+- HTML
+- Sass
+- JavaScript
+- CSS
 
