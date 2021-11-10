@@ -8,7 +8,7 @@
 
 ![Final result of the project](assets/image/photo.png)
 
-<h4 align="center"><a href="https://www.iuricode.com/">Click to visit the project</a></h4>
+<h4 align="center"><a href="https://dlanmi.github.io/Portfolio/">Click to visit the project</a></h4>
 
 
 ## 💼 Technologies used
