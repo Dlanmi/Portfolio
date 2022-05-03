@@ -1,226 +1,365 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Daniel Ojeda" />
+    <meta
+      name="description"
+      content="Developer Front-End y UI Designer. Siete meses trabajando como freelancer."
+    />
+    <meta
+      name="keywords"
+      content="sites, web, desarrollador, programador, front-end, designer, ui, freelancer, freela, website"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#6610F2" />
+    <meta name="copyright" content="Daniel Design" />
+    <meta http-equiv="content-language" content="es" />
+    <meta
+      property="og:title"
+      content="Portafolio | Daniel Ojeda - Developer Front-End y UI Designer"
+    />
+    <meta
+      property="og:description"
+      content="Developer Front-End y UI Designer. Siete meses trabajando como freelancer."
+    />
+    <title>Portfolio | Daniel Design</title>
+    <link rel="stylesheet" href="assets/scss/style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/image/iuricode.png"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" href="assets/image/iuricode.png" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="author" content="Daniel Ojeda" />
-  <meta name="description" content="Developer Front-End y UI Designer. Siete meses trabajando como freelancer." />
-  <meta name="keywords" content="sites, web, desarrollador, programador, front-end, designer, ui, freelancer, freela, website" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#6610F2" />
-  <meta name="copyright" content="Daniel Design" />
-  <meta http-equiv="content-language" content="es" />
-  <meta property="og:title" content="Portafolio | Daniel Ojeda - Developer Front-End y UI Designer" />
-  <meta property="og:description" content="Developer Front-End y UI Designer. Siete meses trabajando como freelancer." />
-  <title>Portafolio | Daniel Design</title>
-  <link rel="stylesheet" href="assets/scss/style.css" />
-  <link rel="shortcut icon" href="assets/image/iuricode.png" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="assets/image/iuricode.png" />
-</head>
-
-<body>
-  <!--Menu-->
-  <header>
-    <div class="larguraMaxContainer">
-      <nav>
-          <h1 class="logo">Portafolio</h1>
+  <body>
+    <!--Menu-->
+    <header>
+      <div class="larguraMaxContainer">
+        <nav>
+          <h1 class="logo">Portfolio</h1>
           <div class="mobile-menu">
-              <div class="line1"></div>
-              <div class="line2"></div>
-              <div class="line3"></div>
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
           </div>
           <ul class="nav-list">
-              <li><a href="#sobre">Sobre mi</a></li>
-              <li><a href="#projetos">Projetos</a></li>
-              <li><a href="#servicos">Servicios</a></li>
-              <li><a href="#conhecimentos">Contactame</a></li>
+            <li><a href="#sobre">About me</a></li>
+            <li><a href="#projetos">Projects</a></li>
+            <li><a href="#servicos">Services</a></li>
+            <li><a href="#conhecimentos">Contact me</a></li>
           </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <!--Home-->
-    <section id="apresentacaoPortfolio">
-      <div class="larguraMaxContainer">
-        <article id="apresentacaoTexto">
-          <h2 class="imagem-delay">
-            Hola soy<br>
-            <span id="nome">Daniel Ojeda</span><br>
-            <span class="maquina-escrever">Developer Front-End y UI Designer.</span>
-          </h2>
-          <a href="https://www.instagram.com/daniel._.d06/" rel="noopener" target="_blank" class="button">
-            <span class="iconify" data-inline="false" data-icon="bi:instagram"></span>&nbsp;Instagram
-          </a>
-        </article>
-        <article id="apresentacaoFoto">
-          <img src="assets/image/espaco-ux.png" alt="foto de um espaço" id="fundo" class="imagem-espaco-delay">
-          <img src="assets/image/iuri-flutuando.png" alt="personagem flutuando" class="object imagem-iuri-delay" >
-        </article>
+        </nav>
       </div>
-      <img src="assets/image/scroll.svg" alt="Mouse Scroll" class="mouse scroll-delay">
-    </section>
+    </header>
 
-    <!--Sobre mi-->
-    <section id="sobre">
-      <div class="larguraMaxContainer">
-        <section id="sobreMim">
-          <article id="sobreFoto">
-            <img src="assets/image/iuricode.png" alt="ilustração do iuricode" class="imagem-delay" data-tilt>
-            <div id="figura1" class="icon1 descricao-delay">
-              <span class="iconify" data-inline="false" data-icon="vscode-icons:file-type-html"></span>
-            </div>
-            <div id="figura2" class="icon2 descricao-delay">
-              <span class="iconify" data-inline="false" data-icon="vscode-icons:file-type-js-official"></span>
-            </div>
-            <div id="figura3" class="icon3 descricao-delay">
-              <span class="iconify" data-inline="false" data-icon="vscode-icons:file-type-css"></span>
-            </div>
+    <main>
+      <!--Home-->
+      <section id="apresentacaoPortfolio">
+        <div class="larguraMaxContainer">
+          <article id="apresentacaoTexto">
+            <h2 class="imagem-delay">
+              Hello I'm<br />
+              <span id="nome">Daniel Ojeda</span><br />
+              <span class="maquina-escrever">I create stuff sometimes.</span>
+            </h2>
+            <a
+              href="https://www.instagram.com/daniel._.d06/"
+              rel="noopener"
+              target="_blank"
+              class="button"
+            >
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="bi:instagram"
+              ></span
+              >&nbsp;Instagram
+            </a>
           </article>
-          <article id="sobreTexto">
-            <h2 class="titulo-delay">Sobre mi</h2>
-            <p class="descricao-delay">
-              Mi nombre es Daniel Ojeda, tengo 16 años vivo en Bogota Colombia. Actualmente estoy
-              estudiando en el colegio. Tambien he estado estudiando mucho por mi cuenta para aprender
-              nuevas tecnologias.
-            </p>
-            <p class="descricao-delay">
-              Comence como Desarrollador Front End en 2020. Desde entonces, he dedicado aproximadamente 4 horas al día a
-              estudiar. Veo que estoy en el camino correcto porque veo los resultados que traen las horas dedicadas.
-            </p>
-            <div>
-              <a href="https://www.linkedin.com/in/daniel-david-ojeda-1b4155217/" rel="noopener" target="_blank" class="button">
-                <span class="iconify" data-icon="brandico:linkedin"></span>&nbsp;Linkedin
-              </a>
-            </div>
-
+          <article id="apresentacaoFoto">
+            <img
+              src="assets/image/espaco-ux.png"
+              alt="foto de um espaço"
+              id="fundo"
+              class="imagem-espaco-delay"
+            />
+            <img
+              src="assets/image/iuri-flutuando.png"
+              alt="personagem flutuando"
+              class="object imagem-iuri-delay"
+            />
           </article>
-        </section>
-      </div>
-    </section>
-
-    <!--Projectos-->
-    <section id="projetos">
-      <div class="larguraMaxContainer">
-        <h2 class="titulo-delay">Projetos</h2>
-        <article>
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-
-          <div class="cards-interval">
-            <h3>Proximamente</h3>
-            <p>Busca un café y espera un poco, estamos desarrollando un proyecto.</p>
-          </div>
-        </article>
-        <a href="https://github.com/Dlanmi" rel="noopener" target="_blank" class="descricao-delay">Repositorios en GitHub</a>
-      </div>
-    </section>
-
-    <!--Serviçios-->
-    <section id="servicos">
-      <div class="larguraMaxContainer">
-        <h2 class="titulo-delay">Servicios</h2>
-        <article>
-          <div class="cards-interval draw meet">
-            <span class="iconify" data-inline="false" data-icon="clarity:computer-line"></span>
-            <h3>Creacion de paginas web</h3>
-            <p>Desarrollo de sitios web profesionales, sistemas web, blogs y tiendas virtuales.</p>
-          </div>
-          <div class="cards-interval">
-            <span class="iconify" data-inline="false" data-icon="akar-icons:mobile-device"></span>
-            <h3>Sitios Responsivos</h3>
-            <p>Creación de sitios web con capacidad de respuesta para la mejor visualización en todas las resoluciones.</p>
-          </div>
-          <div class="cards-interval">
-            <span class="iconify" data-inline="false" data-icon="clarity:design-line"></span>
-            <h3>UI Design</h3>
-            <p>Diseñar diseños que se adapten a su negocio de forma profesional y fiel en el desarrollo.</p>
-          </div>
-          <div class="cards-interval">
-            <span class="iconify" data-inline="false" data-icon="bi:code-square"></span>
-            <h3>Código Semantico</h3>
-            <p>Estrategia y seguimiento para su negocio, haciendo que su sitio aparezca cada vez mejor en las búsquedas.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!--Conocimiento-->
-    <section id="conhecimentos">
-      <div class="larguraMaxContainer">
-        <div>
-          <article id="texto-conhecimentos">
-            <h2 class="titulo-delay">Conocimientos</h2>
-            <p class="descricao-delay mudarTextoDescricao">
-              Estoy convencido de que juntos lograremos cosas increibles.💜
-              <br>
-              <br>
-              *pase el mouse sobre la tarjeta para leer sobre*
-            </p>
-          </article>
-
-          <article id="cards-conhecimentos">
-            <div class="cards-interval html sairCaixa">
-              <span class="cards-nomes">HTML</span>
-              <span class="iconify" data-inline="false" data-icon="icomoon-free:html-five"></span>
-            </div>
-            <div class="cards-interval css sairCaixa">
-              <span class="cards-nomes">CSS</span>
-              <span class="iconify" data-inline="false" data-icon="simple-icons:css3"></span>
-            </div>
-            <div class="cards-interval js sairCaixa">
-              <span class="cards-nomes">Javascript</span>
-              <span class="iconify" data-inline="false" data-icon="cib:js"></span>
-            </div>
-            <div class="cards-interval sass sairCaixa">
-              <span class="cards-nomes">Sass</span>
-              <span class="iconify" data-inline="false" data-icon="cib:sass-alt"></span>
-            </div>
-            <div class="cards-interval react sairCaixa">
-              <span class="cards-nomes-baixo">ReactJS</span>
-              <span class="iconify" data-inline="false" data-icon="cib:react"></span>
-            </div>
-            <div class="cards-interval next sairCaixa">
-              <span class="cards-nomes-baixo">Next.js</span>
-              <span class="iconify" data-icon="akar-icons:nextjs-fill"></span>
-            </div>
-            <div class="cards-interval styled sairCaixa">
-              <span class="cards-nomes-baixo aumento-hover">Styled Components</span>
-              <span class="iconify" data-inline="false" data-icon="simple-icons:styled-components"></span>
-            </div>
-            <div class="cards-interval tailwind sairCaixa">
-              <span class="cards-nomes-baixo">Tailwind</span>
-              <span class="iconify" data-inline="false" data-icon="mdi:tailwind"></span>
-            </div>
-          </article>
-
         </div>
-      </div>
-    </section>
+        <img
+          src="assets/image/scroll.svg"
+          alt="Mouse Scroll"
+          class="mouse scroll-delay"
+        />
+      </section>
 
-    <!---
+      <!--Sobre mi-->
+      <section id="sobre">
+        <div class="larguraMaxContainer">
+          <section id="sobreMim">
+            <article id="sobreFoto">
+              <img
+                src="assets/image/iuricode.png"
+                alt="ilustração do iuricode"
+                class="imagem-delay"
+                data-tilt
+              />
+              <div id="figura1" class="icon1 descricao-delay">
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="vscode-icons:file-type-html"
+                ></span>
+              </div>
+              <div id="figura2" class="icon2 descricao-delay">
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="vscode-icons:file-type-js-official"
+                ></span>
+              </div>
+              <div id="figura3" class="icon3 descricao-delay">
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="vscode-icons:file-type-css"
+                ></span>
+              </div>
+            </article>
+            <article id="sobreTexto">
+              <h2 class="titulo-delay">About me</h2>
+              <p class="descricao-delay">
+                Mi nombre es Daniel Ojeda, tengo 17 años vivo en Bogotá
+                Colombia. Actualmente estoy estudiando en el colegio. Tambien he
+                estado estudiando mucho por mi cuenta para aprender nuevas
+                tecnologias.
+              </p>
+              <p class="descricao-delay">
+                Comence a estudiar Front End en 2020. Desde entonces, he
+                dedicado aproximadamente 3 horas al día a estudiar. Veo que
+                estoy en el camino correcto porque veo los resultados que traen
+                las horas dedicadas.
+              </p>
+              <div>
+                <a
+                  href="https://www.linkedin.com/in/daniel-david-ojeda-1b4155217/"
+                  rel="noopener"
+                  target="_blank"
+                  class="button"
+                >
+                  <span class="iconify" data-icon="brandico:linkedin"></span
+                  >&nbsp;Linkedin
+                </a>
+              </div>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <!--Projectos-->
+      <section id="projetos">
+        <div class="larguraMaxContainer">
+          <h2 class="titulo-delay">Projects</h2>
+          <article>
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estoy desarrollando un proyecto.
+              </p>
+            </div>
+
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estoy desarrollando un proyecto.
+              </p>
+            </div>
+
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estoy desarrollando un proyecto.
+              </p>
+            </div>
+
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estoy desarrollando un proyecto.
+              </p>
+            </div>
+
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estoy desarrollando un proyecto.
+              </p>
+            </div>
+
+            <div class="cards-interval">
+              <h3>Proximamente</h3>
+              <p>
+                Busca un café y espera un poco, estamos desarrollando un
+                proyecto.
+              </p>
+            </div>
+          </article>
+          <a
+            href="https://github.com/Dlanmi"
+            rel="noopener"
+            target="_blank"
+            class="descricao-delay"
+            >Repositorios en GitHub</a
+          >
+        </div>
+      </section>
+
+      <!--Serviçios-->
+      <section id="servicos">
+        <div class="larguraMaxContainer">
+          <h2 class="titulo-delay">Services</h2>
+          <article>
+            <div class="cards-interval draw meet">
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="clarity:computer-line"
+              ></span>
+              <h3>Creación de paginas web</h3>
+              <p>
+                Desarrollo de sitios web profesionales, sistemas web, blogs y
+                tiendas virtuales.
+              </p>
+            </div>
+            <div class="cards-interval">
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="akar-icons:mobile-device"
+              ></span>
+              <h3>Sitios Responsivos</h3>
+              <p>
+                Creación de sitios web con capacidad de respuesta para la mejor
+                visualización en todas las resoluciones.
+              </p>
+            </div>
+            <div class="cards-interval">
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="clarity:design-line"
+              ></span>
+              <h3>UI Design</h3>
+              <p>
+                Diseñar diseños que se adapten a su negocio de forma profesional
+                y fiel en el desarrollo.
+              </p>
+            </div>
+            <div class="cards-interval">
+              <span
+                class="iconify"
+                data-inline="false"
+                data-icon="bi:code-square"
+              ></span>
+              <h3>Código Semantico</h3>
+              <p>
+                Estrategia y seguimiento para su negocio, haciendo que su sitio
+                aparezca cada vez mejor en las búsquedas.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!--Conocimiento-->
+      <section id="conhecimentos">
+        <div class="larguraMaxContainer">
+          <div>
+            <article id="texto-conhecimentos">
+              <h2 class="titulo-delay">Conocimientos</h2>
+              <p class="descricao-delay mudarTextoDescricao">
+                Estoy convencido de que juntos lograremos cosas increibles.😊🤙
+                <br />
+                <br />
+                *pase el mouse sobre la tarjeta para leer sobre*
+              </p>
+            </article>
+
+            <article id="cards-conhecimentos">
+              <div class="cards-interval html sairCaixa">
+                <span class="cards-nomes">HTML</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="icomoon-free:html-five"
+                ></span>
+              </div>
+              <div class="cards-interval css sairCaixa">
+                <span class="cards-nomes">CSS</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="simple-icons:css3"
+                ></span>
+              </div>
+              <div class="cards-interval js sairCaixa">
+                <span class="cards-nomes">Javascript</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="cib:js"
+                ></span>
+              </div>
+              <div class="cards-interval sass sairCaixa">
+                <span class="cards-nomes">Sass</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="cib:sass-alt"
+                ></span>
+              </div>
+              <div class="cards-interval react sairCaixa">
+                <span class="cards-nomes-baixo">ReactJS</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="cib:react"
+                ></span>
+              </div>
+              <div class="cards-interval next sairCaixa">
+                <span class="cards-nomes-baixo">Next.js</span>
+                <span class="iconify" data-icon="akar-icons:nextjs-fill"></span>
+              </div>
+              <div class="cards-interval styled sairCaixa">
+                <span class="cards-nomes-baixo aumento-hover"
+                  >Styled Components</span
+                >
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="simple-icons:styled-components"
+                ></span>
+              </div>
+              <div class="cards-interval tailwind sairCaixa">
+                <span class="cards-nomes-baixo">Tailwind</span>
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="mdi:tailwind"
+                ></span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!---
     <form id="contato" method="post" enctype="text/plain">
       <article id="agradecimento">
         <div>
@@ -255,49 +394,52 @@
       </fieldset>
     </form>-->
 
-    <!--Scroll top-->
-    <div id="stop" class="scrollTop">
-      <span>
-        <span class="iconify" data-inline="false" data-icon="dashicons:arrow-up-alt2"></span>
-      </span>
-    </div>
-  </main>
+      <!--Scroll top-->
+      <div id="stop" class="scrollTop">
+        <span>
+          <span
+            class="iconify"
+            data-inline="false"
+            data-icon="dashicons:arrow-up-alt2"
+          ></span>
+        </span>
+      </div>
+    </main>
 
-  <!--Footer-->
-  <footer class="footer">
-    <h2>Hello World!🌎</h2>
-    <p>Si quieres chatear conmigo, no dudes en enviarme un mensaje.</p>
+    <!--Footer-->
+    <footer class="footer">
+      <h2>Hello World!🌎</h2>
+      <p>Si quieres chatear conmigo, no dudes en enviarme un mensaje.</p>
 
-    <a href="mailto:danielgamier1@gmail.com">💌 danielgamier1@gmail.com</a>
+      <a href="mailto:danielgamier1@gmail.com">✉️ danielgamier1@gmail.com</a>
 
-    <div>
-      <a href="https://discord.com/channels/@me" target="_blank">
-        🌎 Discord
-      </a>
-      <a href="https://www.linkedin.com/in/daniel-david-ojeda-1b4155217/" target="_blank">
-        💼 Linkedin
-      </a>
-      <a href="https://www.instagram.com/daniel._.d06/" target="_blank">
-        🌈 Instagram
-      </a>
-      <a href="https://github.com/Dlanmi" target="_blank">
-        🐱 GitHub
-      </a>
-    </div>
+      <div>
+        <a href="https://discord.com/channels/@me" target="_blank">
+          🌎 Discord
+        </a>
+        <a
+          href="https://www.linkedin.com/in/daniel-david-ojeda-1b4155217/"
+          target="_blank"
+        >
+          💼 Linkedin
+        </a>
+        <a href="https://www.instagram.com/daniel._.d06/" target="_blank">
+          🌈 Instagram
+        </a>
+        <a href="https://github.com/Dlanmi" target="_blank"> 🐱 GitHub </a>
+      </div>
 
-    <p>Derechos reservados | Daniel Design</p>
+      <p>Derechos reservados | Daniel Design</p>
+    </footer>
 
-  </footer>
-
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <!--Script dos ícones-->
-  <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
-  <!--JQuery para o scroll-->
-  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-  <!--Scritps-->
-  <script src="assets/js/script.js"></script>
-  <!--Script do efeito de inclinação-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
-</body>
-
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!--Script dos ícones-->
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+    <!--JQuery para o scroll-->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <!--Scritps-->
+    <script src="assets/js/script.js"></script>
+    <!--Script do efeito de inclinação-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+  </body>
 </html>
