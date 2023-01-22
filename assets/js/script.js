@@ -124,19 +124,14 @@ document.querySelector(".tailwind").addEventListener("mouseover", function () {
     "Tailwind CSS es un marco de trabajo diseñado para maximizar el potencial del viejo CSS y llevarlo aún más lejos. <br><br> 1 mes de experiencia";
 });
 
-document.querySelector(".sass").addEventListener("mouseover", function () {
+document.querySelector(".python").addEventListener("mouseover", function () {
   texto1.innerHTML =
-    "Sass (el preprocesador) es un lenguaje de hojas de estilo. Es un sencillo lenguaje de scripting utilizado en los archivos Sass. <br><br> 8 meses de experiencia";
+    "Python es un lenguaje de programación versátil utilizado en desarrollo web, automatización, IA y análisis de datos. Orientado a objetos e interpretado. <br><br> 3 mes de experiencia";
 });
 
 document.querySelector(".react").addEventListener("mouseover", function () {
   texto1.innerHTML =
     "React es una biblioteca JavaScript de código abierto centrada en la creación de interfaces de usuario en páginas web. <br><br> 3 meses de experiencia";
-});
-
-document.querySelector(".next").addEventListener("mouseover", function () {
-  texto1.innerHTML =
-    "Next.js es un framework web que permite funcionalidades como el renderizado del lado del servidor y la generación de sitios web estáticos basados en React. <br><br> 3 meses de experiencia";
 });
 
 document
@@ -150,7 +145,7 @@ var sairCaixa = document.getElementsByClassName("sairCaixa");
 
 for (i = 0; i < sairCaixa.length; i++) {
   sairCaixa[i].addEventListener("mouseout", function mudarTextoNormal() {
-    texto1.innerHTML = `Estoy convencido de que juntos lograremos cosas increibles.💜<br><br>*pase el mouse sobre la tarjeta para leer sobre*`;
+    texto1.innerHTML = `Estoy convencido de que juntos lograremos cosas increibles.💜<br><br>*pase el mouse sobre la tarjeta para leer 👌*`;
   });
 }
 
