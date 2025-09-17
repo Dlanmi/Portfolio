@@ -62,7 +62,7 @@ $(document).ready(function () {
   $(window).scroll(function () {
     var topPos = $(this).scrollTop();
     //Quantidade Y que o botão de scroll vai aparecer
-    if (topPos > 500) {
+    if (topPos > 400) {
       $(scrollTop).css("opacity", "1");
     } else {
       $(scrollTop).css("opacity", "0");
@@ -84,22 +84,24 @@ $(document).ready(function () {
 //Revelar animação
 const sr = ScrollReveal({
   origin: "top",
-  distance: "50px",
-  duration: 1000,
-  reset: true,
+  distance: "30px",
+  duration: 600,
+  reset: false,
+  mobile: true,
+  viewFactor: 0.1,
 });
 
 //Home delay
-sr.reveal(".button", { delay: 200 });
-sr.reveal(".linguagensProjeto", { delay: 400 });
-sr.reveal(".imagem-espaco-delay", { delay: 200 });
-sr.reveal(".imagem-iuri-delay", { delay: 600 });
-sr.reveal(".scroll-delay", { delay: 1000 });
+sr.reveal(".button", { delay: 100 });
+sr.reveal(".linguagensProjeto", { delay: 200 });
+sr.reveal(".imagem-espaco-delay", { delay: 100 });
+sr.reveal(".imagem-iuri-delay", { delay: 300 });
+sr.reveal(".scroll-delay", { delay: 400 });
 //Sobre mim delay
-sr.reveal(".imagem-delay", {});
-sr.reveal(".titulo-delay", { delay: 200 });
-sr.reveal(".descricao-delay", { delay: 400 });
-sr.reveal(".cards-interval", { interval: 400 });
+sr.reveal(".imagem-delay", { delay: 50 });
+sr.reveal(".titulo-delay", { delay: 100 });
+sr.reveal(".descricao-delay", { delay: 200 });
+sr.reveal(".cards-interval", { interval: 100 });
 
 //Animação conhecimentos
 var texto1 = document.querySelector(".mudarTextoDescricao");
@@ -140,6 +142,16 @@ document
     texto1.innerHTML =
       "Styled Components es una librería que utiliza el concepto de CSS-in-JS, es decir, nos permite escribir código CSS dentro de Javascript. <br><br> 3 meses de experiencia";
   });
+
+document.querySelector(".n8n").addEventListener("mouseover", function () {
+  texto1.innerHTML =
+    "N8N es una herramienta de automatización de workflows que permite conectar diferentes aplicaciones y servicios sin necesidad de código. <br><br> 3 meses de experiencia";
+});
+
+document.querySelector(".openai").addEventListener("mouseover", function () {
+  texto1.innerHTML =
+    "OpenAI es una empresa de inteligencia artificial que desarrolla modelos avanzados como GPT. ChatGPT es su interfaz conversacional más popular. <br><br> 1 mes de experiencia";
+});
 
 var sairCaixa = document.getElementsByClassName("sairCaixa");
 
