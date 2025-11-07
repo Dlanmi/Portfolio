@@ -42,10 +42,11 @@
             <div class="line3"></div>
           </div>
           <ul class="nav-list">
-            <li><a href="#sobre">About me</a></li>
+            <li><a href="#sobre">About</a></li>
             <li><a href="#projetos">Projects</a></li>
             <li><a href="#servicos">Services</a></li>
-            <li><a href="#conhecimentos">Contact me</a></li>
+            <li><a href="#conhecimentos">Skills</a></li>
+            <li><a href="#contato" class="nav-contact-btn">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -57,23 +58,50 @@
         <div class="larguraMaxContainer">
           <article id="apresentacaoTexto">
             <h2 class="imagem-delay">
-              Hello I'm<br />
+              Hello, I'm<br />
               <span id="nome">Daniel Ojeda 👨🏽‍🚀</span><br />
-              <span class="maquina-escrever">I create stuff sometimes.</span>
+              <span class="maquina-escrever">Full-Stack Developer & AI Enthusiast</span>
             </h2>
-            <a
-              href="https://www.instagram.com/its.daniid/"
-              rel="noopener"
-              target="_blank"
-              class="button"
-            >
-              <span
-                class="iconify"
-                data-inline="false"
-                data-icon="bi:instagram"
-              ></span
-              >&nbsp;Instagram
-            </a>
+            <p class="hero-subtitle">Transforming ideas into innovative digital experiences through code and artificial intelligence</p>
+            <div class="hero-buttons">
+              <a
+                href="https://github.com/Dlanmi"
+                rel="noopener"
+                target="_blank"
+                class="button button-primary"
+              >
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="akar-icons:github-fill"
+                ></span
+                >&nbsp;GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/daniel-ojeda-1b4155217/"
+                rel="noopener"
+                target="_blank"
+                class="button button-secondary"
+              >
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="akar-icons:linkedin-fill"
+                ></span
+                >&nbsp;LinkedIn
+              </a>
+              <a
+                href="#contato"
+                class="button button-outline"
+              >
+                <span
+                  class="iconify"
+                  data-inline="false"
+                  data-icon="bi:envelope-fill"
+                ></span
+                >&nbsp;Contact Me
+              </a>
+            </div>
           </article>
           <article id="apresentacaoFoto">
             <img
@@ -130,21 +158,33 @@
               </div>
             </article>
             <article id="sobreTexto">
-              <h2 class="titulo-delay">About me</h2>
+              <h2 class="titulo-delay">About Me</h2>
               <p class="descricao-delay">
-                Soy Daniel, tengo 20 años y actualmente curso 4° semestre de
-                Ingeniería de Software.Me apasiona el desarrollo de software y
-                las herramientas de inteligencia artificial, explorando cómo
-                estas tecnologías pueden transformar ideas en proyectos reales e
-                innovadores 👨🏽‍🚀
+                I'm Daniel, a 20-year-old Software Engineering student (4th semester) passionate about
+                software development and artificial intelligence. I explore how these technologies
+                can transform ideas into real, innovative projects 👨🏽‍🚀
               </p>
 
               <p class="descricao-delay">
-                Mi camino en programación comenzó en 2020, cuando descubrí el
-                mundo del desarrollo web. Desde entonces he venido fortaleciendo
-                mis habilidades con proyectos personales, cursos y
-                certificaciones
+                My programming journey began in 2020 when I discovered the world of web development.
+                Since then, I've been strengthening my skills through personal projects, courses, and certifications.
               </p>
+
+              <div class="about-stats">
+                <div class="stat-item">
+                  <span class="stat-number">4+</span>
+                  <span class="stat-label">Years of Experience</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">10+</span>
+                  <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">5+</span>
+                  <span class="stat-label">Technologies Mastered</span>
+                </div>
+              </div>
+
               <div>
                 <a
                   href="https://www.linkedin.com/in/daniel-ojeda-1b4155217/"
@@ -153,7 +193,16 @@
                   class="button"
                 >
                   <span class="iconify" data-icon="brandico:linkedin"></span
-                  >&nbsp;Linkedin
+                  >&nbsp;LinkedIn
+                </a>
+                <a
+                  href="https://github.com/Dlanmi"
+                  rel="noopener"
+                  target="_blank"
+                  class="button button-secondary"
+                >
+                  <span class="iconify" data-icon="akar-icons:github-fill"></span
+                  >&nbsp;GitHub
                 </a>
               </div>
             </article>
@@ -161,28 +210,34 @@
         </div>
       </section>
 
-      <!--Projectos-->
+      <!--Projects-->
       <section id="projetos">
         <div class="larguraMaxContainer">
-          <h2 class="titulo-delay">Projects</h2>
+          <h2 class="titulo-delay">Featured Projects</h2>
+          <p class="section-subtitle">Some of my recent work combining creativity, technology, and innovation</p>
           <article>
             <div class="cards-interval">
-              <img src="assets/image/proyecto1.png" alt="Bowies Club Project" />
+              <img src="assets/image/proyecto1.png" alt="Bowies Club NFT Collection Website" />
               <h3>Bowies Club</h3>
               <p>
-                A website created with React and Styled components about NFT's
-                Bowies Club collection.
+                A modern NFT collection website showcasing the Bowies Club collection
+                with smooth animations and interactive UI elements.
               </p>
+              <div class="linguagensProjeto">
+                <span>React</span>
+                <span>Styled Components</span>
+                <span>JavaScript</span>
+              </div>
               <span>
                 <button
                   onclick="window.open('https://github.com/Dlanmi/bowies-club', '_blank')"
                 >
-                  Ver Código
+                  View Code
                 </button>
                 <button
                   onclick="window.open('https://bowiesclub.vercel.app/', '_blank')"
                 >
-                  Ver Online
+                  Live Demo
                 </button>
               </span>
             </div>
@@ -190,20 +245,27 @@
             <div class="cards-interval">
               <img
                 src="assets/image/proyecto2.png"
-                alt="Self-Driving Car Project"
+                alt="Self-Driving Car Simulation with Neural Networks"
               />
-              <h3>Autonomous car with JavaScript</h3>
-              <p>Self-driving car with JavaScript, HTML and CSS.</p>
+              <h3>Autonomous Car Simulation</h3>
+              <p>Self-driving car simulation using neural networks and machine learning,
+                built entirely with vanilla JavaScript and HTML5 Canvas.</p>
+              <div class="linguagensProjeto">
+                <span>JavaScript</span>
+                <span>HTML5 Canvas</span>
+                <span>Neural Networks</span>
+                <span>Machine Learning</span>
+              </div>
               <span>
                 <button
                   onclick="window.open('https://github.com/Dlanmi/Self-Driving-Car-with-JavaScript', '_blank')"
                 >
-                  Ver Código
+                  View Code
                 </button>
                 <button
                   onclick="window.open('https://self-driving-car-self.vercel.app/', '_blank')"
                 >
-                  Ver Online
+                  Live Demo
                 </button>
               </span>
             </div>
@@ -211,29 +273,44 @@
             <div class="cards-interval">
               <img
                 src="assets/image/proyecto3.png"
-                alt="Rick and Morty Project"
+                alt="Rick and Morty Character Explorer"
               />
-              <h3>Rick and Morty Project</h3>
-              <p>Developed in ReactJS, consuming the Rick and Morty API.</p>
+              <h3>Rick and Morty Explorer</h3>
+              <p>Interactive character explorer with search, filters, and detailed views
+                consuming the Rick and Morty API with React.</p>
+              <div class="linguagensProjeto">
+                <span>React</span>
+                <span>REST API</span>
+                <span>CSS3</span>
+              </div>
               <span>
                 <button
-                  onclick="window.open('https://rick-and-morty-app-gray-ten.vercel.app/', '_blank')"
+                  onclick="window.open('https://github.com/Dlanmi/rick-and-morty-project', '_blank')"
                 >
-                  Ver Código
+                  View Code
                 </button>
                 <button
                   onclick="window.open('https://rick-and-morty-project.vercel.app/', '_blank')"
                 >
-                  Ver Online
+                  Live Demo
                 </button>
               </span>
             </div>
+          </article>
+          <div class="view-more-projects">
+            <a href="https://github.com/Dlanmi?tab=repositories" target="_blank" class="button button-outline">
+              <span class="iconify" data-icon="akar-icons:github-fill"></span>
+              &nbsp;View More Projects
+            </a>
+          </div>
+        </div>
       </section>
 
-      <!--Serviçios-->
+      <!--Services-->
       <section id="servicos">
         <div class="larguraMaxContainer">
           <h2 class="titulo-delay">Services</h2>
+          <p class="section-subtitle">Professional web development solutions tailored to your needs</p>
           <article>
             <div class="cards-interval draw meet">
               <span
@@ -241,11 +318,12 @@
                 data-inline="false"
                 data-icon="clarity:computer-line"
               ></span>
-              <h3>Creación de paginas web</h3>
+              <h3>Web Development</h3>
               <p>
-                Desarrollo de sitios web profesionales, sistemas web, blogs y
-                tiendas virtuales.
+                Development of professional websites, web systems, blogs, and
+                e-commerce platforms using modern technologies.
               </p>
+              <a href="#contato" class="service-cta">Get Started</a>
             </div>
             <div class="cards-interval">
               <span
@@ -253,11 +331,12 @@
                 data-inline="false"
                 data-icon="akar-icons:mobile-device"
               ></span>
-              <h3>Sitios Responsivos</h3>
+              <h3>Responsive Design</h3>
               <p>
-                Creación de sitios web con capacidad de respuesta para la mejor
-                visualización en todas las resoluciones.
+                Creation of fully responsive websites that provide optimal viewing
+                experience across all devices and screen resolutions.
               </p>
+              <a href="#contato" class="service-cta">Get Started</a>
             </div>
             <div class="cards-interval">
               <span
@@ -265,11 +344,12 @@
                 data-inline="false"
                 data-icon="clarity:design-line"
               ></span>
-              <h3>UI Design</h3>
+              <h3>UI/UX Design</h3>
               <p>
-                Diseñar diseños que se adapten a su negocio de forma profesional
-                y fiel en el desarrollo.
+                Designing intuitive and professional interfaces that align with your
+                brand identity and enhance user experience.
               </p>
+              <a href="#contato" class="service-cta">Get Started</a>
             </div>
             <div class="cards-interval">
               <span
@@ -277,144 +357,232 @@
                 data-inline="false"
                 data-icon="bi:code-square"
               ></span>
-              <h3>Código Semantico</h3>
+              <h3>SEO Optimization</h3>
               <p>
-                Estrategia y seguimiento para su negocio, haciendo que su sitio
-                aparezca cada vez mejor en las búsquedas.
+                Strategic optimization to improve your website's visibility and
+                ranking in search engine results.
               </p>
+              <a href="#contato" class="service-cta">Get Started</a>
             </div>
           </article>
         </div>
       </section>
 
-      <!--Conocimiento-->
+      <!--Skills & Technologies-->
       <section id="conhecimentos">
         <div class="larguraMaxContainer">
-          <div>
-            <article id="texto-conhecimentos">
-              <h2 class="titulo-delay">Conocimientos</h2>
-              <p class="descricao-delay mudarTextoDescricao">
-                Estoy convencido de que juntos lograremos cosas increibles.😊🤙
-                <br />
-                <br />
-                *pase el mouse sobre la tarjeta para leer 👌*
-              </p>
-            </article>
+          <h2 class="titulo-delay text-center">Skills & Technologies</h2>
+          <p class="section-subtitle text-center">
+            A comprehensive overview of my technical expertise and tools I work with
+          </p>
 
-            <article id="cards-conhecimentos">
-              <div class="cards-interval html sairCaixa">
-                <span class="cards-nomes">HTML</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="icomoon-free:html-five"
-                ></span>
+          <div class="skills-container">
+            <!-- Frontend Category -->
+            <div class="skill-category">
+              <h3 class="category-title">
+                <span class="iconify" data-icon="bx:code-alt"></span>
+                Frontend Development
+              </h3>
+              <div class="skills-grid">
+                <div class="skill-card html" data-skill="HTML">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-html"></span>
+                  <span class="skill-name">HTML5</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-card css" data-skill="CSS">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-css"></span>
+                  <span class="skill-name">CSS3</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-card js" data-skill="JavaScript">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-js-official"></span>
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-card react" data-skill="React">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-reactjs"></span>
+                  <span class="skill-name">React</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 75%"></div>
+                  </div>
+                </div>
               </div>
-              <div class="cards-interval css sairCaixa">
-                <span class="cards-nomes">CSS</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="simple-icons:css3"
-                ></span>
+            </div>
+
+            <!-- Styling & UI -->
+            <div class="skill-category">
+              <h3 class="category-title">
+                <span class="iconify" data-icon="bx:palette"></span>
+                Styling & UI
+              </h3>
+              <div class="skills-grid">
+                <div class="skill-card styled" data-skill="Styled Components">
+                  <span class="iconify skill-icon" data-icon="simple-icons:styledcomponents"></span>
+                  <span class="skill-name">Styled Components</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 70%"></div>
+                  </div>
+                </div>
+                <div class="skill-card tailwind" data-skill="Tailwind">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-tailwind"></span>
+                  <span class="skill-name">Tailwind CSS</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 65%"></div>
+                  </div>
+                </div>
               </div>
-              <div class="cards-interval js sairCaixa">
-                <span class="cards-nomes">Javascript</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="cib:js"
-                ></span>
+            </div>
+
+            <!-- Backend & Languages -->
+            <div class="skill-category">
+              <h3 class="category-title">
+                <span class="iconify" data-icon="bx:server"></span>
+                Backend & Languages
+              </h3>
+              <div class="skills-grid">
+                <div class="skill-card python" data-skill="Python">
+                  <span class="iconify skill-icon" data-icon="vscode-icons:file-type-python"></span>
+                  <span class="skill-name">Python</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 70%"></div>
+                  </div>
+                </div>
               </div>
-              <div class="cards-interval python sairCaixa">
-                <span class="cards-nomes">Python</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="cib:python"
-                ></span>
+            </div>
+
+            <!-- Tools & AI -->
+            <div class="skill-category">
+              <h3 class="category-title">
+                <span class="iconify" data-icon="bx:bot"></span>
+                AI & Automation
+              </h3>
+              <div class="skills-grid">
+                <div class="skill-card n8n" data-skill="N8N">
+                  <span class="iconify skill-icon" data-icon="simple-icons:n8n"></span>
+                  <span class="skill-name">N8N</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 75%"></div>
+                  </div>
+                </div>
+                <div class="skill-card openai" data-skill="OpenAI">
+                  <span class="iconify skill-icon" data-icon="simple-icons:openai"></span>
+                  <span class="skill-name">OpenAI & GPT</span>
+                  <div class="skill-level">
+                    <div class="skill-bar" style="--skill-width: 80%"></div>
+                  </div>
+                </div>
               </div>
-              <div class="cards-interval react sairCaixa">
-                <span class="cards-nomes-baixo">ReactJS</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="cib:react"
-                ></span>
-              </div>
-              <div class="cards-interval styled sairCaixa">
-                <span class="cards-nomes-baixo aumento-hover"
-                  >Styled Components</span
-                >
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="simple-icons:styledcomponents"
-                ></span>
-              </div>
-              <div class="cards-interval tailwind sairCaixa">
-                <span class="cards-nomes-baixo">Tailwind</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="mdi:tailwind"
-                ></span>
-              </div>
-              <div class="cards-interval n8n sairCaixa">
-                <span class="cards-nomes-baixo">N8N - experiencia en 3 meses</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="simple-icons:n8n"
-                ></span>
-              </div>
-              <div class="cards-interval openai sairCaixa">
-                <span class="cards-nomes-baixo">ChatGPT - 1 mes</span>
-                <span
-                  class="iconify"
-                  data-inline="false"
-                  data-icon="simple-icons:openai"
-                ></span>
-              </div>
-            </article>
+            </div>
+          </div>
+
+          <!-- Skill Detail Panel -->
+          <div class="skill-detail-panel">
+            <p class="skill-description">
+              Hover over a skill card to learn more about my experience and proficiency
+            </p>
           </div>
         </div>
       </section>
 
-      <!---
-    <form id="contato" method="post" enctype="text/plain">
-      <article id="agradecimento">
-        <div>
-          <h2>Obrigado pela visita!</h2>
-          <h4>Não hesite em mandar-me uma mensagem.</h4>
-        </div>
-      </article>
-      <fieldset id="camposContato">
-        <div id="campoFlex">
-          <div class="campoPadrao">
-            <label>E-mail</label>
-            <input name="email" type="email" class="campos" placeholder="Digite e-mail aqui..." required>
+      <!--Contact Form-->
+      <section id="contato">
+        <div class="larguraMaxContainer">
+          <div class="contact-wrapper">
+            <article class="contact-info">
+              <h2>Let's Work Together!</h2>
+              <p>
+                Have a project in mind or want to discuss opportunities?
+                I'd love to hear from you. Drop me a message and I'll get back to you as soon as possible.
+              </p>
+
+              <div class="contact-details">
+                <div class="contact-item">
+                  <span class="iconify" data-icon="bi:envelope-fill"></span>
+                  <div>
+                    <h4>Email</h4>
+                    <a href="mailto:danielgamier1@gmail.com">danielgamier1@gmail.com</a>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <span class="iconify" data-icon="bi:geo-alt-fill"></span>
+                  <div>
+                    <h4>Location</h4>
+                    <p>Available for remote work worldwide</p>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <span class="iconify" data-icon="bi:clock-fill"></span>
+                  <div>
+                    <h4>Response Time</h4>
+                    <p>Usually within 24-48 hours</p>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your.email@example.com"
+                    required
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder="What's this about?"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  placeholder="Tell me about your project or inquiry..."
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span class="iconify" data-icon="bi:send-fill"></span>
+                Send Message
+              </button>
+
+              <div id="form-status" class="form-status"></div>
+            </form>
           </div>
-
-          <div class="campoPadrao" id="espacoResponsivo">
-            <label>Nome</label>
-            <input name="nome" type="text" class="campos" placeholder="Digite seu nome aqui..." required>
-          </div>
         </div>
-
-        <div id="campoDois">
-          <label>Mensagem</label>
-          <textarea name="mensagem" id="campoMensagem" cols="30" rows="10"
-            placeholder="Digite o motivo do contato aqui..." required></textarea>
-        </div>
-
-        <input type="submit" value="Enviar" id="botao">
-
-        <div id="captcha">
-          Goo<input type="text" id="campo" maxlength="1" required>le
-        </div>
-      </fieldset>
-    </form>-->
+      </section>
 
       <!--Scroll top-->
       <div id="stop" class="scrollTop">
@@ -430,28 +598,34 @@
 
     <!--Footer-->
     <footer class="footer">
-      <h2>Hello World!🌎</h2>
-      <p>Si quieres chatear conmigo, no dudes en enviarme un mensaje.</p>
+      <h2>Let's Connect!</h2>
+      <p>Feel free to reach out if you want to collaborate, have a question, or just want to chat.</p>
 
-      <a href="mailto:danielgamier1@gmail.com">✉️ danielgamier1@gmail.com</a>
+      <a href="mailto:danielgamier1@gmail.com" class="email-link">
+        <span class="iconify" data-icon="bi:envelope-fill"></span>
+        danielgamier1@gmail.com
+      </a>
 
-      <div>
-        <a href="https://discord.com/channels/@me" target="_blank">
-          🌎 Discord
+      <div class="social-links">
+        <a href="https://github.com/Dlanmi" target="_blank" rel="noopener">
+          <span class="iconify" data-icon="akar-icons:github-fill"></span>
+          GitHub
         </a>
         <a
           href="https://www.linkedin.com/in/daniel-ojeda-1b4155217/"
           target="_blank"
+          rel="noopener"
         >
-          💼 Linkedin
+          <span class="iconify" data-icon="akar-icons:linkedin-fill"></span>
+          LinkedIn
         </a>
-        <a href="https://www.instagram.com/its.daniid/" target="_blank">
-          🌈 Instagram
+        <a href="https://www.instagram.com/its.daniid/" target="_blank" rel="noopener">
+          <span class="iconify" data-icon="bi:instagram"></span>
+          Instagram
         </a>
-        <a href="https://github.com/Dlanmi" target="_blank"> 🐱 GitHub </a>
       </div>
 
-      <p>Derechos reservados | Daniel Design</p>
+      <p class="copyright">© 2024 Daniel Ojeda. All rights reserved.</p>
     </footer>
 
     <script src="https://unpkg.com/scrollreveal"></script>
