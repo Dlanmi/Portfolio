@@ -16,7 +16,8 @@ const ready = () => html.classList.add('motion-ready');
 function hero() {
   const fades = gsap.utils.toArray<HTMLElement>('[data-hero-fade]');
   if (fades.length) {
-    gsap.fromTo(fades, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE, stagger: 0.1, delay: 0.15 });
+    // clearProps: al terminar no queda ningún transform inline; un ancestro transformado rompería el position: fixed del menú del CV.
+    gsap.fromTo(fades, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE, stagger: 0.1, delay: 0.15, clearProps: 'opacity,transform' });
   }
 
   // La frase se escribe letra a letra, como en el sitio anterior, y va rotando.
@@ -51,6 +52,7 @@ function reveals() {
         duration: 0.9,
         ease: EASE,
         delay: Number(el.dataset.delay ?? 0),
+        clearProps: 'opacity,transform',
         scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       },
     );
@@ -67,6 +69,7 @@ function reveals() {
         duration: 0.8,
         ease: EASE,
         stagger: Number(el.dataset.stagger ?? 0.08),
+        clearProps: 'opacity,transform',
         scrollTrigger: { trigger: el, start: 'top 88%', once: true },
       },
     );

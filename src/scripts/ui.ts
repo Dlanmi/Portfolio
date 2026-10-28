@@ -1,17 +1,9 @@
 /* Interacciones de la interfaz (sin animaciones): header, menú móvil, menú del CV, copiar correo, hora local. */
 
-// ── Header: fondo al hacer scroll y se esconde al bajar ───────────────────
+// ── Header: fondo al hacer scroll (siempre visible, para que el CV esté a mano) ─
 const header = document.querySelector<HTMLElement>('[data-header]');
-let lastY = window.scrollY;
 function onScroll() {
-  if (!header) return;
-  const y = window.scrollY;
-  header.classList.toggle('is-scrolled', y > 24);
-  const menuOpen = header.classList.contains('menu-open');
-  const anyCvOpen = document.querySelector('[data-cv-menu][open]');
-  if (!menuOpen && !anyCvOpen) header.classList.toggle('is-hidden', y > 320 && y > lastY + 4);
-  if (y < lastY - 4) header.classList.remove('is-hidden');
-  lastY = y;
+  header?.classList.toggle('is-scrolled', window.scrollY > 24);
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
@@ -41,8 +33,10 @@ cvMenus.forEach((d) => {
   });
 });
 document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
   cvMenus.forEach((d) => {
-    if (d.open && !d.contains(e.target as Node)) d.open = false;
+    // Fuera del menú, sobre el fondo oscuro de móvil (el propio <details>) o en la ✕.
+    if (d.open && (target === d || !d.contains(target) || target.closest('[data-cv-close]'))) d.open = false;
   });
 });
 document.addEventListener('keydown', (e) => {
