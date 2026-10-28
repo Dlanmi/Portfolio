@@ -1,0 +1,16 @@
+---
+/* Monograma: una «D» con el guion bajo que parpadeaba en el portafolio anterior. */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 32 32" aria-hidden="true">
+  <rect width="32" height="32" fill="var(--c-violet)"></rect>
+  <rect x="3.5" y="3.5" width="25" height="25" fill="none" stroke="#fff" stroke-opacity=".35"></rect>
+  <path
+    d="M8 10h4.6c3.4 0 5.4 2.3 5.4 6s-2 6-5.4 6H8V10Zm2.6 2.3v7.4h1.9c1.9 0 3-1.4 3-3.7s-1.1-3.7-3-3.7h-1.9Z"
+    fill="#fff"></path>
+  <rect class="mark-cursor" x="20" y="19.4" width="4.6" height="2.6" fill="#fff"></rect>
+</svg>

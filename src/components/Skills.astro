@@ -1,0 +1,63 @@
+---
+/* «Conocimientos», como en el sitio anterior: tarjetas con el ícono de cada tecnología. */
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { type Lang, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const es = lang === 'es';
+
+const stack = [
+  { name: 'TypeScript', icon: 'typescript' },
+  { name: 'JavaScript', icon: 'javascript' },
+  { name: 'Python', icon: 'python' },
+  { name: 'React', icon: 'react' },
+  { name: 'Next.js', icon: 'nextdotjs' },
+  { name: 'Astro', icon: 'astro' },
+  { name: 'Node.js', icon: 'nodedotjs' },
+  { name: 'FastAPI', icon: 'fastapi' },
+  { name: 'PostgreSQL', icon: 'postgresql' },
+  { name: 'SQLite', icon: 'sqlite' },
+  { name: 'Supabase', icon: 'supabase' },
+  { name: 'Docker', icon: 'docker' },
+  { name: 'Tailwind CSS', icon: 'tailwindcss' },
+  { name: 'GSAP', icon: 'greensock' },
+  { name: 'Electron', icon: 'electron' },
+  { name: 'pandas', icon: 'pandas' },
+  { name: 'scikit-learn', icon: 'scikitlearn' },
+  { name: 'Vitest', icon: 'vitest' },
+  { name: 'Git', icon: 'git' },
+  { name: 'n8n', icon: 'n8n' },
+  { name: 'Shopify', icon: 'shopify' },
+  { name: 'Vercel', icon: 'vercel' },
+];
+---
+
+<section id="conocimientos" class="wrap py-16 md:py-24" aria-labelledby="skills-title">
+  <SectionHead
+    id="skills-title"
+    kicker={t('skills.title')}
+    title={es ? 'Con qué trabajo' : 'What I work with'}
+    intro={
+      es
+        ? 'Las herramientas que uso en proyectos reales. Las que mejor domino son TypeScript, Python y SQL; el resto depende del problema.'
+        : 'The tools I use in real projects. I am strongest in TypeScript, Python and SQL; the rest depends on the problem.'
+    }
+  />
+  <ul class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6" data-reveal="stagger" data-stagger="0.03">
+    {
+      stack.map((s) => (
+        <li class="card card-hover group flex items-center gap-3 px-4 py-3.5">
+          <span class="text-ink-2 transition-colors group-hover:text-violet-ink">
+            <Icon name={s.icon} class="h-5 w-5" />
+          </span>
+          <span class="font-mono text-[0.8125rem] text-ink">{s.name}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>

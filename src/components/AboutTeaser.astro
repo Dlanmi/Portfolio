@@ -1,0 +1,41 @@
+---
+import Portrait from './Portrait.astro';
+import { about } from '../data/about';
+import { type Lang, routes, url, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<section id="sobre-mi" class="scroll-mt-4 bg-bg-2 py-16 md:py-24" aria-labelledby="sobre-title">
+  <div class="wrap grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+    <div class="order-2 lg:order-1 lg:col-span-5" data-reveal="up">
+      <Portrait />
+    </div>
+    <div class="order-1 lg:order-2 lg:col-span-7" data-reveal="up">
+      <p class="label text-violet-ink">{t('about.kicker')}</p>
+      <h2 id="sobre-title" class="h-section mt-3">{about.title[lang]}</h2>
+      <p class="mt-5 text-[1.125rem]/relaxed text-ink md:text-[1.2rem]/relaxed">{about.lead[lang]}</p>
+      <div class="mt-4 grid gap-3 text-[1rem]/relaxed text-ink-2">
+        {about.short[lang].map((p) => <p>{p}</p>)}
+      </div>
+      <ul class="mt-7 grid gap-3 sm:grid-cols-3">
+        {
+          about.principles.map((pr, i) => (
+            <li class="rounded-xl border border-line bg-bg p-4">
+              <span class="label text-violet-ink">0{i + 1}</span>
+              <p class="mt-1.5 text-[0.95rem] font-medium text-ink">{pr.title[lang]}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <a href={url(routes.about(lang))} class="btn mt-7 w-full sm:w-auto">
+        {t('about.cta')}
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>

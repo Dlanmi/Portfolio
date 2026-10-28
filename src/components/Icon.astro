@@ -1,0 +1,17 @@
+---
+/* Ícono de marca (Simple Icons) incrustado como SVG en el build; no carga nada en el navegador. */
+import { icons } from '@iconify-json/simple-icons';
+import { getIconData, iconToSVG, replaceIDs } from '@iconify/utils';
+
+interface Props {
+  name: string;
+  class?: string;
+}
+const { name, class: className = 'h-6 w-6' } = Astro.props;
+const data = getIconData(icons, name);
+if (!data) throw new Error(`Ícono no encontrado en simple-icons: ${name}`);
+const svg = iconToSVG(data, { height: 'auto' });
+const body = replaceIDs(svg.body);
+---
+
+<svg {...svg.attributes} class={className} fill="currentColor" aria-hidden="true" set:html={body} />

@@ -1,0 +1,57 @@
+---
+/* Tarjeta de proyecto destacado: imagen completa, título, resumen, tecnologías y enlaces. */
+import Visual from './Visual.astro';
+import StatusDot from './StatusDot.astro';
+import type { Project } from '../data/projects';
+import { type Lang, routes, url, useT } from '../i18n/ui';
+
+interface Props {
+  project: Project;
+  index: number;
+  lang: Lang;
+}
+const { project: p, index, lang } = Astro.props;
+const t = useT(lang);
+const caseUrl = url(routes.project(lang, p.slug));
+---
+
+<article id={p.slug} class="card card-hover group flex scroll-mt-28 flex-col overflow-hidden" aria-labelledby={`t-${p.slug}`}>
+  <a href={caseUrl} class="block border-b border-line" tabindex="-1" aria-hidden="true">
+    <Visual visual={p.visual} lang={lang} class="transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
+  </a>
+  <div class="flex flex-1 flex-col p-6">
+    <div class="label flex items-center justify-between text-ink-3">
+      <span>{String(index + 1).padStart(2, '0')} · {p.year}</span>
+      <span class="flex items-center gap-2 normal-case"><StatusDot kind={p.status.kind} />{p.status.label[lang]}</span>
+    </div>
+    <h3 id={`t-${p.slug}`} class="h-card mt-3">
+      <a href={caseUrl} class="transition-colors hover:text-violet-ink">{p.title}</a>
+    </h3>
+    <p class="mt-2 text-[0.95rem]/relaxed text-ink-2">{p.summary[lang]}</p>
+    <ul class="mt-4 flex flex-wrap gap-1.5" aria-label={t('case.stack')}>
+      {p.stack.slice(0, 5).map((s) => <li class="tag">{s}</li>)}
+    </ul>
+    <div class="mt-6 flex flex-wrap gap-2 pt-1">
+      <a href={caseUrl} class="btn btn-primary btn-sm">
+        {t('work.case')}
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      {
+        p.links.live && (
+          <a href={p.links.live} target="_blank" rel="noopener" class="btn btn-sm">
+            {t('work.visit')}
+            <span class="arrow arrow-out" aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+      {
+        p.links.code && (
+          <a href={p.links.code} target="_blank" rel="noopener" class="btn btn-sm">
+            {t('work.code')}
+            <span class="arrow arrow-out" aria-hidden="true">↗</span>
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>

@@ -1,0 +1,19 @@
+---
+import SectionHead from './SectionHead.astro';
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../data/projects';
+import { type Lang, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<section id="proyectos" class="wrap scroll-mt-6 py-16 md:py-24" aria-labelledby="proyectos-title">
+  <SectionHead id="proyectos-title" kicker={t('work.kicker')} title={t('work.title')} intro={t('work.intro')} />
+  <div class="mt-10 grid gap-5 md:grid-cols-2" data-reveal="stagger" data-stagger="0.1">
+    {projects.map((p, i) => <ProjectCard project={p} index={i} lang={lang} />)}
+  </div>
+</section>

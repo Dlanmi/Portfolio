@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import { url, useT } from '../i18n/ui';
+
+const t = useT('es');
+---
+
+<Base lang="es" alternate="/en/" title="404">
+  <section class="wrap flex min-h-[80svh] flex-col justify-center pt-(--header-h) pb-16">
+    <p class="label text-violet-ink">Error 404</p>
+    <h1 class="mt-4 font-mono text-[clamp(4rem,14vw,9rem)] leading-none font-bold">
+      404<span class="cursor-blink text-violet-ink">_</span>
+    </h1>
+    <p class="mt-6 text-xl font-semibold">{t('404.title')}</p>
+    <p class="mt-2 text-ink-2">{t('404.text')}</p>
+    <p class="mt-1 text-ink-3">This page does not exist.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={url('/')} class="btn btn-primary">{t('404.home')} <span class="arrow" aria-hidden="true">→</span></a>
+      <a href={url('/en/')} class="btn">English</a>
+    </div>
+  </section>
+</Base>

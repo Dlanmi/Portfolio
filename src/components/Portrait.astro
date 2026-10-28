@@ -1,0 +1,43 @@
+---
+/* Ilustración de «Sobre mí» con íconos flotando, como en el sitio anterior.
+   Para usar una foto real, guárdala como src/assets/me.jpg (o .png / .webp): reemplaza a la ilustración. */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+import ilustracion from '../assets/illus/sobre-mi.png';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+const found = import.meta.glob<{ default: ImageMetadata }>('../assets/me.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(found)[0]?.default;
+const floating = [
+  { icon: 'typescript', cls: 'top-[8%] -left-2 lg:-left-6' },
+  { icon: 'python', cls: 'top-[42%] -right-2 lg:-right-8' },
+  { icon: 'react', cls: 'bottom-[10%] left-[4%]' },
+];
+---
+
+<div class:list={['relative mx-auto w-full max-w-[22rem]', className]}>
+  {
+    photo ? (
+      <Image src={photo} alt="Daniel Ojeda" widths={[480, 720]} sizes="22rem" class="aspect-square w-full rounded-2xl object-cover" />
+    ) : (
+      <Image src={ilustracion} alt="" widths={[400, 800]} sizes="22rem" class="w-full" data-float-slow />
+    )
+  }
+  {
+    floating.map((f, i) => (
+      <span
+        class:list={['card absolute grid h-12 w-12 place-items-center text-ink', f.cls]}
+        style={`animation-delay:${i * 0.4}s`}
+        data-float-slow
+        aria-hidden="true"
+      >
+        <Icon name={f.icon} class="h-6 w-6" />
+      </span>
+    ))
+  }
+</div>

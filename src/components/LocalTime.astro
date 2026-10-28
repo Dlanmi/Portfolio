@@ -1,0 +1,14 @@
+---
+/* Hora actual en Bogotá; se actualiza cada 30 s. Sin JS muestra solo la ciudad. */
+interface Props {
+  city: string;
+  class?: string;
+}
+const { city, class: className = '' } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center gap-2', className]}>
+  <span>{city}</span>
+  <time data-local-time class="tabular-nums text-ink-2"></time>
+  <span class="text-ink-3">GMT−5</span>
+</span>

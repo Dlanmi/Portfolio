@@ -1,0 +1,84 @@
+---
+/* Portada: como la del sitio anterior (saludo, nombre en Fira Code, máquina de escribir y el astronauta
+   flotando sobre la mancha morada), con los botones de CV y proyectos. */
+import { Image } from 'astro:assets';
+import CvMenu from './CvMenu.astro';
+import { profile } from '../data/profile';
+import { type Lang, url, useT } from '../i18n/ui';
+import astronauta from '../assets/illus/astronauta.png';
+import espacio from '../assets/illus/espacio.png';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const es = lang === 'es';
+const phrases = es
+  ? ['Software Engineer · Data Analyst', 'Construyo cosas que la gente usa.', 'Estudiante de Ingeniería de Software']
+  : ['Software Engineer · Data Analyst', 'I build things people actually use.', 'Software Engineering student'];
+const sizes = '(min-width: 768px) 56vw, 80vw';
+---
+
+<section class="hero relative overflow-hidden pt-(--header-h)" aria-labelledby="hero-title">
+  <!-- Mancha morada con el astronauta: arriba a la derecha en escritorio, más pequeña sobre el texto en móvil -->
+  <div
+    class="pointer-events-none relative -mt-6 -mr-14 ml-auto w-[80vw] max-w-[420px] md:absolute md:top-(--header-h) md:-right-24 md:mt-0 md:w-[min(56vw,720px)] md:max-w-none lg:-right-10"
+    aria-hidden="true"
+  >
+    <div data-float-slow>
+      <Image src={espacio} alt="" widths={[480, 760, 1100]} sizes={sizes} loading="eager" class="w-full opacity-95" />
+    </div>
+    <div class="absolute inset-0" data-float>
+      <Image src={astronauta} alt="" widths={[480, 760, 1100]} sizes={sizes} loading="eager" fetchpriority="high" class="w-full" />
+    </div>
+  </div>
+
+  <div class="wrap relative flex flex-col justify-center pb-14 md:min-h-[min(78svh,720px)] md:py-16">
+    <div class="max-w-[36rem]">
+      <p class="text-lg text-ink-2 md:text-xl" data-hero-fade>{es ? 'Hola, soy' : "Hello, I'm"}</p>
+      <h1 id="hero-title" class="mt-1 font-mono text-[clamp(2.3rem,6vw,4.25rem)] leading-[1.1] font-bold tracking-tight" data-hero-fade>
+        {profile.name} <span class="inline-block" aria-hidden="true">👨🏽‍🚀</span>
+      </h1>
+      <p class="mt-3 min-h-[1.6em] font-mono text-[clamp(1rem,2vw,1.35rem)] text-ink" data-hero-fade>
+        <span data-typewriter data-phrases={JSON.stringify(phrases.slice(1))}>{phrases[0]}</span><span class="cursor-blink text-violet-ink" aria-hidden="true">|</span>
+      </p>
+      <p class="mt-5 max-w-[32rem] text-[1.0625rem]/relaxed text-ink-2" data-hero-fade>{t('hero.statement')}</p>
+
+      <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap" data-hero-fade>
+        <CvMenu lang={lang} variant="primary" class="w-full sm:w-auto" />
+        <a href="#proyectos" class="btn w-full sm:w-auto">
+          {t('hero.ctaWork')}
+          <svg class="arrow arrow-down h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M8 2.5v11M3.5 9 8 13.5 12.5 9"></path>
+          </svg>
+        </a>
+      </div>
+
+      <ul class="label mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-ink-3" data-hero-fade>
+        <li class="flex items-center gap-2"><span class="dot-live"></span>{t('hero.statusValue')}</li>
+        <li><a href={profile.links.github} target="_blank" rel="noopener" class="link-u hover:text-ink">GitHub ↗</a></li>
+        <li><a href={profile.links.linkedin} target="_blank" rel="noopener" class="link-u hover:text-ink">LinkedIn ↗</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="#proyectos" class="absolute bottom-5 left-1/2 hidden -translate-x-1/2 md:block" aria-label={t('hero.scroll')} data-hero-fade>
+    <img src={url('/scroll.svg')} alt="" width="24" height="38" class="scroll-mouse" />
+  </a>
+</section>
+
+<style>
+  .scroll-mouse {
+    animation: scroll-bob 1.8s ease-in-out infinite;
+  }
+  @keyframes scroll-bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+</style>

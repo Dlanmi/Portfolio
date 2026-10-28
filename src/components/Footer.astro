@@ -1,0 +1,67 @@
+---
+/* Contacto + pie. Está en todas las páginas, por eso el enlace «Contacto» del menú siempre funciona. */
+import CvMenu from './CvMenu.astro';
+import Icon from './Icon.astro';
+import LocalTime from './LocalTime.astro';
+import { profile } from '../data/profile';
+import { type Lang, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useT(lang);
+const year = new Date().getFullYear();
+---
+
+<footer id="contacto" class="mt-auto border-t border-line bg-bg-2">
+  <div class="wrap py-16 md:py-24">
+    <div class="grid items-start gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-6" data-reveal="up">
+        <p class="label text-violet-ink">{t('contact.kicker')}</p>
+        <h2 class="h-section mt-3">{t('contact.title')}</h2>
+        <p class="mt-4 max-w-[36rem] text-[1.0625rem]/relaxed text-ink-2">{t('contact.text')}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={`mailto:${profile.email}`} class="btn btn-primary">
+            {lang === 'es' ? 'Escribirme' : 'Email me'}
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+          <CvMenu lang={lang} variant="ghost" up />
+        </div>
+      </div>
+
+      <div class="card p-6 lg:col-span-5 lg:col-start-8" data-reveal="up">
+        <p class="label text-ink-3">Email</p>
+        <div class="mt-2 flex flex-wrap items-center justify-between gap-3">
+          <a href={`mailto:${profile.email}`} class="link-u font-mono text-[1.05rem] break-all text-ink">{profile.email}</a>
+          <button type="button" class="btn btn-sm" data-copy={profile.email} data-copied-label={t('contact.copied')}>
+            <span data-copy-label>{t('contact.copy')}</span>
+          </button>
+        </div>
+        <ul class="mt-6 grid gap-3 border-t border-line pt-5">
+          <li>
+            <a href={profile.links.linkedin} target="_blank" rel="noopener" class="group flex items-center gap-3 text-ink-2 transition-colors hover:text-ink">
+              <Icon name="linkedin" class="h-4 w-4" /> LinkedIn
+              <span class="label ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          </li>
+          <li>
+            <a href={profile.links.github} target="_blank" rel="noopener" class="group flex items-center gap-3 text-ink-2 transition-colors hover:text-ink">
+              <Icon name="github" class="h-4 w-4" /> GitHub
+              <span class="label ml-auto text-ink-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          </li>
+          <li class="label flex items-center text-ink-3">
+            <LocalTime city={t('hero.local')} />
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="label mt-12 flex flex-col gap-2 border-t border-line pt-6 text-[0.6875rem] text-ink-3 normal-case md:flex-row md:items-center md:justify-between">
+      <span>© {year} Daniel David Ojeda · {t('footer.made')}</span>
+      <span>{t('footer.built')}</span>
+      <a href="#top" class="link-u hover:text-ink" data-to-top>{t('footer.top')} ↑</a>
+    </div>
+  </div>
+</footer>

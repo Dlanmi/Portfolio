@@ -1,0 +1,128 @@
+---
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource-variable/fira-code';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { profile } from '../data/profile';
+import { type Lang, routes, url, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Ruta equivalente en el otro idioma (para el selector y hreflang). */
+  alternate: string;
+  title?: string;
+  description?: string;
+  /** `article` para los casos de estudio. */
+  type?: 'website' | 'article';
+  /** Datos estructurados (schema.org) propios de la página; se suman a los de Person y WebSite. */
+  schema?: Record<string, unknown>[];
+}
+
+const { lang, alternate, title, description, type = 'website', schema = [] } = Astro.props;
+const t = useT(lang);
+const fullTitle = title ? `${title} — Daniel Ojeda` : t('meta.title');
+const desc = description ?? t('meta.description');
+const site = Astro.site ?? new URL('http://localhost:4321');
+const canonical = new URL(Astro.url.pathname, site);
+const alternateUrl = new URL(url(alternate), site);
+const ogImage = new URL(url('/og.png'), site);
+const homeEs = new URL(url(routes.home('es')), site);
+
+// Datos estructurados: quién soy y qué es este sitio, en todas las páginas.
+const person = {
+  '@type': 'Person',
+  '@id': `${homeEs.href}#daniel`,
+  name: profile.fullName,
+  alternateName: profile.name,
+  url: homeEs.href,
+  image: ogImage.href,
+  email: `mailto:${profile.email}`,
+  jobTitle: lang === 'es' ? 'Software Engineer y Data Analyst' : 'Software Engineer & Data Analyst',
+  address: { '@type': 'PostalAddress', addressLocality: 'Bogotá', addressCountry: 'CO' },
+  sameAs: [profile.links.github, profile.links.linkedin],
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Fundación Universitaria Compensar' },
+    { '@type': 'CollegeOrUniversity', name: 'Fundación Universitaria de Ciencias de la Salud' },
+  ],
+  knowsAbout: ['TypeScript', 'Python', 'SQL', 'React', 'Next.js', 'Astro', 'Node.js', 'Data analysis', 'Machine learning'],
+};
+const website = {
+  '@type': 'WebSite',
+  '@id': `${homeEs.href}#site`,
+  name: lang === 'es' ? 'Daniel Ojeda — Portafolio' : 'Daniel Ojeda — Portfolio',
+  url: homeEs.href,
+  inLanguage: ['es', 'en'],
+  author: { '@id': `${homeEs.href}#daniel` },
+};
+const jsonLd = { '@context': 'https://schema.org', '@graph': [person, website, ...schema] };
+---
+
+<!doctype html>
+<html lang={lang === 'es' ? 'es-CO' : 'en'} id="top">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="author" content={profile.fullName} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#131219" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang === 'es' ? 'en' : 'es'} href={alternateUrl} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={lang === 'es' ? canonical : alternateUrl} />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Daniel Ojeda" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Daniel Ojeda — Software Engineer · Data Analyst" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_CO'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        // Si GSAP no carga, el contenido aparece igual.
+        setTimeout(function () {
+          d.classList.add('motion-ready');
+        }, 2500);
+      })();
+    </script>
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="label sr-only z-80 bg-violet px-4 py-3 text-white focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+    >
+      {t('nav.skip')}
+    </a>
+    <Header lang={lang} alternate={alternate} />
+    <main id="contenido" class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      import '../scripts/ui';
+      import '../scripts/motion';
+    </script>
+  </body>
+</html>

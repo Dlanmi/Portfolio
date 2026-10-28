@@ -1,0 +1,103 @@
+---
+/* futpred: diagrama de calibración (selecciones 2016–26, docs/reliability_nations.png) y RPS en el Mundial 2026
+   (docs/RESULTADOS_WC2026.md). Puntos leídos del gráfico original. */
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const es = lang === 'es';
+const num = (v: number, d = 4) => (es ? v.toFixed(d).replace('.', ',') : v.toFixed(d));
+
+const X0 = 80;
+const Y0 = 440;
+const S = 330;
+const px = (p: number) => X0 + p * S;
+const py = (f: number) => Y0 - f * S;
+
+const points: [number, number][] = [
+  [0.05, 0.057],
+  [0.15, 0.142],
+  [0.25, 0.257],
+  [0.35, 0.338],
+  [0.45, 0.455],
+  [0.55, 0.545],
+  [0.65, 0.66],
+  [0.75, 0.763],
+  [0.85, 0.832],
+  [0.95, 0.925],
+];
+const path = points.map(([p, f], i) => `${i ? 'L' : 'M'}${px(p).toFixed(1)} ${py(f).toFixed(1)}`).join(' ');
+const ticks = [0, 0.2, 0.4, 0.6, 0.8, 1];
+
+const rps = [
+  { name: es ? 'DC tuneado' : 'Tuned DC', v: 0.1517, main: true },
+  { name: es ? 'DC por defecto' : 'Default DC', v: 0.1533 },
+  { name: 'Elo', v: 0.164 },
+  { name: es ? 'Tasa base' : 'Base rate', v: 0.2222 },
+  { name: es ? 'Uniforme' : 'Uniform', v: 0.2314 },
+];
+const BX = 490;
+const BW = 250;
+const bar = (v: number) => (v / 0.25) * BW;
+---
+
+<svg class="plate" viewBox="0 0 800 500" aria-hidden="true" data-draw>
+  <defs>
+    <pattern id="grid-futpred" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" class="s-faint" stroke-width="0.5"></path>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid-futpred)" opacity="0.5"></rect>
+
+  <!-- Calibración -->
+  <text x={X0} y="52" class="t-dim">{es ? 'CALIBRACIÓN · SELECCIONES 2016–26' : 'CALIBRATION · NATIONAL TEAMS 2016–26'}</text>
+  <text x={X0 + S} y="52" text-anchor="end" class="t-acc">ECE {num(0.007, 3)}</text>
+  {
+    ticks.map((v) => (
+      <g class="fade">
+        <line x1={px(v)} y1={Y0} x2={px(v)} y2={py(1)} class="s-faint" />
+        <line x1={X0} y1={py(v)} x2={px(1)} y2={py(v)} class="s-faint" />
+        <text x={px(v)} y={Y0 + 18} text-anchor="middle" class="t-dim" font-size="10">{v === 0 || v === 1 ? v : num(v, 1)}</text>
+        <text x={X0 - 10} y={py(v) + 3.5} text-anchor="end" class="t-dim" font-size="10">{v === 0 || v === 1 ? v : num(v, 1)}</text>
+      </g>
+    ))
+  }
+  <rect x={X0} y={py(1)} width={S} height={S} class="s-line draw"></rect>
+  <line x1={px(0)} y1={py(0)} x2={px(1)} y2={py(1)} class="s-ink fade" stroke-dasharray="4 5" opacity="0.6"></line>
+  <path d={path} class="s-acc draw" stroke-width="2.2" stroke-linejoin="round"></path>
+  {points.map(([p, f]) => <circle cx={px(p)} cy={py(f)} r="4" class="f-acc pop" />)}
+  <text x={X0 + S} y={Y0 + 40} text-anchor="end" class="t-dim fade" font-size="10">{es ? 'PROBABILIDAD PREDICHA →' : 'PREDICTED PROBABILITY →'}</text>
+  <text x={-(py(1))} y={X0 - 38} transform="rotate(-90)" text-anchor="end" class="t-dim fade" font-size="10">{es ? 'FRECUENCIA OBSERVADA →' : 'OBSERVED FREQUENCY →'}</text>
+  <g class="fade">
+    <line x1={px(0.06)} y1={py(0.9)} x2={px(0.16)} y2={py(0.9)} class="s-ink" stroke-dasharray="4 5" opacity="0.6"></line>
+    <text x={px(0.19)} y={py(0.9) + 3.5} class="t-dim" font-size="10">{es ? 'perfecto' : 'perfect'}</text>
+    <line x1={px(0.06)} y1={py(0.82)} x2={px(0.16)} y2={py(0.82)} class="s-acc" stroke-width="2.2"></line>
+    <text x={px(0.19)} y={py(0.82) + 3.5} class="t-hi" font-size="10">{es ? 'modelo' : 'model'}</text>
+  </g>
+
+  <!-- Mundial 2026 -->
+  <line x1="455" y1="40" x2="455" y2="470" class="s-faint draw"></line>
+  <text x={BX} y="52" class="t-dim">{es ? 'MUNDIAL 2026 · 79 PARTIDOS' : '2026 WORLD CUP · 79 MATCHES'}</text>
+  <text x={BX} y="72" class="t-dim" font-size="10">{es ? 'RPS — menor es mejor' : 'RPS — lower is better'}</text>
+  {
+    rps.map((r, i) => {
+      const y = 108 + i * 44;
+      return (
+        <g>
+          <text x={BX} y={y - 7} class={r.main ? 't-hi fade' : 't-dim fade'} font-size="10.5">
+            {r.name}
+          </text>
+          <text x={BX + BW} y={y - 7} text-anchor="end" class={r.main ? 't-acc fade' : 't-dim fade'} font-size="10.5">
+            {num(r.v)}
+          </text>
+          <rect x={BX} y={y} width={BW} height="12" class="s-faint" />
+          <rect x={BX} y={y} width={bar(r.v)} height="12" class={r.main ? 'f-violet grow' : 'f-muted grow'} />
+        </g>
+      );
+    })
+  }
+  <text x={BX} y="405" class="t-num fade" font-size="62">{es ? '65 %' : '65%'}</text>
+  <text x={BX} y="432" class="t-dim fade" font-size="10.5">{es ? 'acierto · le gana a Elo (62 %)' : 'accuracy · beats Elo (62%)'}</text>
+</svg>

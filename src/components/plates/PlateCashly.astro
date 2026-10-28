@@ -1,0 +1,111 @@
+---
+/* Cashly: los 14 agentes programados (vercel.json, en UTC) pasados a la hora de Bogotá (UTC−5). */
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const es = lang === 'es';
+
+const daily = es ? 'diario' : 'daily';
+const agents = [
+  { t: '03:00', name: 'embedding-backfill', when: daily },
+  { t: '07:00', name: 'morning-digest', when: daily },
+  { t: '07:05', name: 'reminder-fire', when: daily },
+  { t: '07:10', name: 'card-cut-warn', when: daily },
+  { t: '07:15', name: 'anomaly-detect', when: daily },
+  { t: '07:20', name: 'transfer-detect', when: daily },
+  { t: '07:25', name: 'debt-watcher', when: daily },
+  { t: '07:30', name: 'installment-progress', when: daily },
+  { t: '07:35', name: 'budget-watcher', when: daily },
+  { t: '08:00', name: 'weekly-review', when: es ? 'domingos' : 'Sundays' },
+  { t: '08:00', name: 'monthly-close', when: es ? 'día 25' : 'day 25' },
+  { t: '08:30', name: 'subscription-detect', when: es ? 'domingos' : 'Sundays' },
+  { t: '09:00', name: 'jobs-sweep', when: daily },
+  { t: '18:00', name: 'runway-watcher', when: daily },
+];
+
+const CX = 225;
+const CY = 262;
+const R = 168;
+const toHours = (t: string) => {
+  const [h, m] = t.split(':').map(Number);
+  return h + m / 60;
+};
+const at = (h: number, r: number) => {
+  const a = (h / 24) * Math.PI * 2 - Math.PI / 2;
+  return [CX + Math.cos(a) * r, CY + Math.sin(a) * r] as const;
+};
+const hours = Array.from({ length: 24 }, (_, h) => h);
+---
+
+<svg class="plate" viewBox="0 0 800 500" aria-hidden="true" data-draw>
+  <defs>
+    <pattern id="grid-cashly" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20 0H0V20" class="s-faint" stroke-width="0.5"></path>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#grid-cashly)" opacity="0.5"></rect>
+
+  <text x="40" y="52" class="t-dim">{es ? '24 H · HORA DE BOGOTÁ' : '24 H · BOGOTÁ TIME'}</text>
+
+  <circle cx={CX} cy={CY} r={R} class="s-line draw"></circle>
+  <circle cx={CX} cy={CY} r="112" class="s-faint draw" stroke-dasharray="2 5"></circle>
+  <circle cx={CX} cy={CY} r="56" class="s-faint draw"></circle>
+  {
+    hours.map((h) => {
+      const major = h % 6 === 0;
+      const [x1, y1] = at(h, R);
+      const [x2, y2] = at(h, R - (major ? 14 : 7));
+      const [lx, ly] = at(h, R + 20);
+      return (
+        <g class="fade">
+          <line x1={x1} y1={y1} x2={x2} y2={y2} class={major ? 's-ink' : 's-line'} />
+          {major && (
+            <text x={lx} y={ly + 4} text-anchor="middle" class="t-dim" font-size="10">
+              {String(h).padStart(2, '0')}
+            </text>
+          )}
+        </g>
+      );
+    })
+  }
+  {
+    agents.map((a) => {
+      const h = toHours(a.t);
+      const [x1, y1] = at(h, 60);
+      const [x2, y2] = at(h, R - 18);
+      return (
+        <g>
+          <line x1={x1} y1={y1} x2={x2} y2={y2} class="s-acc draw" stroke-width="1.3" />
+          <circle cx={x2} cy={y2} r="3.5" class="f-acc pop" />
+        </g>
+      );
+    })
+  }
+  <text x={CX} y={CY + 10} text-anchor="middle" class="t-num fade" font-size="40">14</text>
+  <text x={CX} y={CY + 30} text-anchor="middle" class="t-dim fade" font-size="9.5">{es ? 'AGENTES' : 'AGENTS'}</text>
+
+  <line x1="450" y1="40" x2="450" y2="470" class="s-faint draw"></line>
+  <text x="482" y="52" class="t-dim">VERCEL CRON</text>
+  {
+    agents.map((a, i) => {
+      const y = 88 + i * 26.5;
+      return (
+        <g class="fade">
+          <text x="482" y={y} class="t-acc" font-size="10.5">
+            {a.t}
+          </text>
+          <text x="530" y={y} class="t-hi" font-size="10.5">
+            {a.name}
+          </text>
+          <text x="768" y={y} text-anchor="end" class="t-dim" font-size="10">
+            {a.when}
+          </text>
+          <line x1="482" y1={y + 9} x2="768" y2={y + 9} class="s-faint" />
+        </g>
+      );
+    })
+  }
+</svg>

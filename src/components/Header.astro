@@ -1,0 +1,142 @@
+---
+import Mark from './Mark.astro';
+import CvMenu from './CvMenu.astro';
+import { type Lang, routes, url, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Ruta equivalente en el otro idioma. */
+  alternate: string;
+}
+const { lang, alternate } = Astro.props;
+const t = useT(lang);
+
+const nav = [
+  { label: t('nav.about'), href: routes.section(lang, 'sobre-mi') },
+  { label: t('nav.work'), href: routes.section(lang, 'proyectos') },
+  { label: t('nav.experience'), href: routes.section(lang, 'experiencia') },
+  { label: t('nav.contact'), href: '#contacto' },
+];
+---
+
+<header class="site-header fixed inset-x-0 top-0 z-60" data-header>
+  <div class="wrap flex h-(--header-h) items-center justify-between gap-6">
+    <a href={url(routes.home(lang))} class="group flex items-center gap-3" aria-label="Daniel Ojeda — inicio">
+      <Mark class="h-8 w-8 rounded-md transition-transform duration-500 group-hover:rotate-90" />
+      <span class="font-mono text-[1.05rem] font-bold tracking-tight uppercase">{lang === 'es' ? 'Portafolio' : 'Portfolio'}</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label={lang === 'es' ? 'Principal' : 'Main'}>
+      {
+        nav.map((item) => (
+          <a href={url(item.href)} class="link-u font-mono text-[0.9rem] text-ink-2 transition-colors hover:text-ink">
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={url(alternate)}
+        hreflang={lang === 'es' ? 'en' : 'es'}
+        class="label flex h-9 items-center rounded-md border border-line px-3 text-ink-2 transition-colors hover:border-ink-2 hover:text-ink"
+        title={t('nav.lang')}
+      >
+        <span class="hidden text-ink sm:inline">{lang.toUpperCase()}</span>
+        <span class="mx-1.5 hidden text-ink-3 sm:inline">/</span>
+        <span>{t('nav.langShort')}</span>
+      </a>
+      <div class="hidden sm:block">
+        <CvMenu lang={lang} variant="compact" align="right" />
+      </div>
+      <button
+        type="button"
+        class="label flex h-9 items-center gap-2 rounded-md border border-line px-3 text-ink md:hidden"
+        aria-expanded="false"
+        aria-controls="menu-movil"
+        data-menu-toggle
+      >
+        <span data-menu-label>{t('nav.menu')}</span>
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Fuera del <header>: su translate y backdrop-filter romperían el position: fixed del menú. -->
+<div id="menu-movil" class="menu-movil md:hidden" data-menu hidden>
+  <nav class="wrap flex flex-col pt-4" aria-label={t('nav.menu')}>
+    {
+      nav.map((item, i) => (
+        <a href={url(item.href)} class="flex items-baseline justify-between border-b border-line py-5" data-menu-link>
+          <span class="font-mono text-2xl font-semibold">{item.label}</span>
+          <span class="label text-ink-3">0{i + 1}</span>
+        </a>
+      ))
+    }
+    <div class="mt-8">
+      <CvMenu lang={lang} variant="primary" />
+    </div>
+  </nav>
+</div>
+
+<style>
+  .site-header {
+    transition:
+      background-color 0.35s,
+      border-color 0.35s,
+      translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.is-scrolled {
+    background: color-mix(in oklab, var(--c-bg) 84%, transparent);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    border-color: var(--c-line);
+  }
+  .site-header.is-hidden {
+    translate: 0 -100%;
+  }
+  .site-header.menu-open {
+    background: var(--c-bg);
+    translate: 0 0;
+  }
+  .menu-movil {
+    position: fixed;
+    z-index: 55;
+    inset: var(--header-h) 0 0 0;
+    background: var(--c-bg);
+    overflow-y: auto;
+  }
+  .menu-icon {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+  }
+  .menu-icon span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition:
+      rotate 0.3s,
+      top 0.3s;
+  }
+  .menu-icon span:first-child {
+    top: 0;
+  }
+  .menu-icon span:last-child {
+    top: 6.5px;
+  }
+  [aria-expanded='true'] .menu-icon span:first-child {
+    top: 3.25px;
+    rotate: 45deg;
+  }
+  [aria-expanded='true'] .menu-icon span:last-child {
+    top: 3.25px;
+    rotate: -45deg;
+  }
+</style>

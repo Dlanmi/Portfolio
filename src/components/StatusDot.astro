@@ -1,0 +1,11 @@
+---
+import type { StatusKind } from '../data/projects';
+
+interface Props {
+  kind: StatusKind;
+}
+const { kind } = Astro.props;
+const cls = { live: 'dot-live', use: 'dot-live', research: 'dot-work', private: 'dot-idle' }[kind];
+---
+
+<span class={cls} aria-hidden="true"></span>

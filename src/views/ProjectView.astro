@@ -1,0 +1,168 @@
+---
+/* Caso de estudio de un proyecto. */
+import Base from '../layouts/Base.astro';
+import Visual from '../components/Visual.astro';
+import StatusDot from '../components/StatusDot.astro';
+import { projects, type Project } from '../data/projects';
+import { type Lang, routes, url, useT } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  slug: string;
+}
+const { lang, slug } = Astro.props;
+const t = useT(lang);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+
+const index = projects.findIndex((p) => p.slug === slug);
+const p = projects[index] as Project;
+const next = projects[(index + 1) % projects.length];
+const no = String(index + 1).padStart(2, '0');
+const val = (v: Project['metrics'][number]['value']) => (typeof v === 'string' ? v : v[lang]);
+// Solo se animan las cifras que son números «limpios» (no «v2.3.2» ni «<5 s»).
+const countable = (v: string) => /^\d[\d.,]*(\+|%| %| M|M)?$/.test(v);
+
+const links = [
+  p.links.live && { label: p.links.liveLabel ?? t('work.visit'), href: p.links.live },
+  p.links.code && { label: 'GitHub', href: p.links.code },
+].filter(Boolean) as { label: string; href: string }[];
+
+const site = Astro.site ?? new URL('http://localhost:4321');
+const abs = (path: string) => new URL(url(path), site).href;
+const schema = [
+  {
+    '@type': 'SoftwareSourceCode',
+    name: p.title,
+    headline: p.tagline[lang],
+    description: p.summary[lang],
+    url: abs(routes.project(lang, p.slug)),
+    inLanguage: lang,
+    dateCreated: p.year,
+    programmingLanguage: p.stack.slice(0, 3),
+    keywords: p.stack.join(', '),
+    ...(p.links.code ? { codeRepository: p.links.code } : {}),
+    author: { '@id': `${abs(routes.home('es'))}#daniel` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: abs(routes.home(lang)) },
+      { '@type': 'ListItem', position: 2, name: t('nav.work'), item: `${abs(routes.home(lang))}#proyectos` },
+      { '@type': 'ListItem', position: 3, name: p.title, item: abs(routes.project(lang, p.slug)) },
+    ],
+  },
+];
+const pageTitle = lang === 'es' ? `${p.title}: caso de estudio` : `${p.title}: case study`;
+---
+
+<Base lang={lang} alternate={routes.project(other, p.slug)} title={pageTitle} description={p.summary[lang]} type="article" schema={schema}>
+  <article>
+    <header class="wrap pt-[calc(var(--header-h)+3rem)] md:pt-[calc(var(--header-h)+4.5rem)]">
+      <div class="label flex items-center justify-between text-ink-3" data-hero-fade>
+        <a href={url(`${routes.home(lang)}#proyectos`)} class="link-u hover:text-ink">← {t('case.back')}</a>
+        <span>{t('work.no')} {no} / {String(projects.length).padStart(2, '0')}</span>
+      </div>
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-12 lg:gap-10">
+        <div class="lg:col-span-7" data-hero-fade>
+          <h1 class="font-mono text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.1] font-bold tracking-tight">{p.title}</h1>
+          <p class="mt-4 text-[clamp(1.1rem,1.8vw,1.35rem)]/relaxed text-ink-2">{p.tagline[lang]}</p>
+        </div>
+        <dl class="card grid grid-cols-[5.5rem_1fr] gap-x-4 gap-y-3 self-start p-5 text-[0.9375rem] lg:col-span-5" data-hero-fade>
+          <dt class="label pt-0.5 text-ink-3">{t('case.year')}</dt>
+          <dd class="text-ink-2">{p.year}</dd>
+          <dt class="label pt-0.5 text-ink-3">{t('case.role')}</dt>
+          <dd class="text-ink-2">{p.role[lang]}</dd>
+          <dt class="label pt-0.5 text-ink-3">{t('case.status')}</dt>
+          <dd class="flex items-center gap-2.5 text-ink"><StatusDot kind={p.status.kind} />{p.status.label[lang]}</dd>
+          {
+            links.length > 0 && (
+              <>
+                <dt class="label pt-0.5 text-ink-3">{t('case.links')}</dt>
+                <dd class="flex flex-wrap gap-x-5 gap-y-1">
+                  {links.map((l) => (
+                    <a href={l.href} target="_blank" rel="noopener" class="link-u text-ink hover:text-violet-ink">
+                      {l.label} ↗
+                    </a>
+                  ))}
+                </dd>
+              </>
+            )
+          }
+        </dl>
+      </div>
+    </header>
+
+    <div class="wrap mt-12 md:mt-16" data-hero-fade>
+      <div class="card overflow-hidden">
+        <Visual visual={p.visual} lang={lang} sizes="(min-width: 1200px) 1136px, 100vw" eager />
+      </div>
+      {p.visual.kind === 'plate' && <p class="label mt-4 text-ink-3 normal-case">{t('case.visual')}</p>}
+    </div>
+
+    <div class="wrap mt-20 grid gap-16 md:mt-28 md:gap-20">
+      <section class="grid gap-5 lg:grid-cols-12">
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.problem')}</h2>
+        <p class="text-[1.125rem]/relaxed text-ink lg:col-span-8" data-reveal="up">{p.problem[lang]}</p>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-12">
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.built')}</h2>
+        <ul class="prose-case text-[1.0625rem]/relaxed text-ink-2 lg:col-span-8" data-reveal="stagger">
+          {p.built[lang].map((b) => <li>{b}</li>)}
+        </ul>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-12" aria-label={t('case.results')}>
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.results')}</h2>
+        <dl class="grid grid-cols-2 gap-4 lg:col-span-9 lg:grid-cols-3" data-reveal="stagger">
+          {
+            p.metrics.map((m) => {
+              const v = val(m.value);
+              return (
+                <div class="card flex flex-col-reverse justify-end gap-3 p-5">
+                  <dt class="text-[0.9rem]/snug text-ink-2">{m.label[lang]}</dt>
+                  <dd class="font-mono text-[clamp(1.6rem,2.6vw,2.25rem)] font-bold whitespace-nowrap text-violet-ink" data-count={countable(v) ? '' : undefined}>
+                    {v}
+                  </dd>
+                </div>
+              );
+            })
+          }
+        </dl>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-12">
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.decisions')}</h2>
+        <ul class="prose-case text-[1.0625rem]/relaxed text-ink-2 lg:col-span-8" data-reveal="stagger">
+          {p.decisions[lang].map((d) => <li set:html={d.replace(/`([^`]+)`/g, '<code class="font-mono text-[0.9em] text-ink">$1</code>')} />)}
+        </ul>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-12">
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.stack')}</h2>
+        <ul class="flex flex-wrap gap-2 lg:col-span-9" data-reveal="stagger" data-stagger="0.03">
+          {p.stack.map((s) => <li class="tag">{s}</li>)}
+        </ul>
+      </section>
+
+      <section class="grid gap-5 lg:grid-cols-12">
+        <h2 class="label text-violet-ink lg:col-span-3" data-reveal="up">{t('case.learned')}</h2>
+        <blockquote class="card border-l-2 border-l-violet p-6 lg:col-span-8" data-reveal="up">
+          <p class="text-[1.1rem]/relaxed text-ink">{p.learned[lang]}</p>
+        </blockquote>
+      </section>
+    </div>
+
+    <nav class="wrap mt-20 mb-6 md:mt-28" aria-label={t('case.next')}>
+      <a href={url(routes.project(lang, next.slug))} class="card card-hover group flex items-center justify-between gap-6 p-6" data-reveal="up">
+        <div>
+          <p class="label text-ink-3">{t('case.next')} · {t('work.no')} {String(((index + 1) % projects.length) + 1).padStart(2, '0')}</p>
+          <p class="mt-2 font-mono text-2xl font-bold transition-colors group-hover:text-violet-ink">{next.title}</p>
+          <p class="mt-1 max-w-[50ch] text-[0.95rem] text-ink-2">{next.tagline[lang]}</p>
+        </div>
+        <span class="font-mono text-3xl text-ink-3 transition-all group-hover:translate-x-1 group-hover:text-violet-ink" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </article>
+</Base>

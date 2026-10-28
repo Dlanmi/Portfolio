@@ -1,0 +1,16 @@
+---
+/* Encabezado de sección: etiqueta en mono, título en Poppins y texto opcional. */
+interface Props {
+  kicker: string;
+  title: string;
+  intro?: string;
+  id?: string;
+}
+const { kicker, title, intro, id } = Astro.props;
+---
+
+<header class="max-w-[40rem]" data-reveal="up">
+  <p class="label text-violet-ink">{kicker}</p>
+  <h2 id={id} class="h-section mt-3">{title}</h2>
+  {intro && <p class="mt-4 text-[1.0625rem]/relaxed text-ink-2">{intro}</p>}
+</header>

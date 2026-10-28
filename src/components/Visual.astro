@@ -1,0 +1,42 @@
+---
+/* Imagen del proyecto: captura real (completa, sin recortar) o lámina técnica en SVG. */
+import { Image } from 'astro:assets';
+import type { Visual as VisualData } from '../data/projects';
+import type { Lang } from '../i18n/ui';
+import PlateFutpred from './plates/PlateFutpred.astro';
+import PlateTrading from './plates/PlateTrading.astro';
+import PlateCashly from './plates/PlateCashly.astro';
+import PlateCasa from './plates/PlateCasa.astro';
+
+interface Props {
+  visual: VisualData;
+  lang: Lang;
+  sizes?: string;
+  eager?: boolean;
+  class?: string;
+}
+const { visual, lang, sizes = '(min-width: 1024px) 50vw, 100vw', eager = false, class: className = '' } = Astro.props;
+const plates = { futpred: PlateFutpred, trading: PlateTrading, cashly: PlateCashly, casa: PlateCasa };
+const Plate = visual.kind === 'plate' ? plates[visual.plate] : null;
+---
+
+<div class:list={['relative aspect-[16/10] overflow-hidden bg-plate', className]}>
+  {
+    visual.kind === 'image' ? (
+      <Image
+        src={visual.src}
+        alt={visual.alt[lang]}
+        widths={[640, 960, 1280, 1440]}
+        sizes={sizes}
+        loading={eager ? 'eager' : 'lazy'}
+        class="h-full w-full object-cover"
+      />
+    ) : (
+      Plate && (
+        <div class="absolute inset-0" role="img" aria-label={visual.alt[lang]}>
+          <Plate lang={lang} />
+        </div>
+      )
+    )
+  }
+</div>
